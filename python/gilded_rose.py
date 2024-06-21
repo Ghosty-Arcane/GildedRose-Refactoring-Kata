@@ -16,8 +16,7 @@ class GildedRose(object):
             # Handles quality drop
             if item.name != BRIE and item.name != BACKSTAGE:
                 if item.quality > 0:
-                    if item.name != SULFURAS:
-                        self._QualityChanger(item, -1)
+                    self._QualityChanger(item, -1)
             else:
                 if item.quality < 50:
                     self._QualityChanger(item, 1)
@@ -38,8 +37,7 @@ class GildedRose(object):
                 if item.name != BRIE:
                     if item.name != BACKSTAGE:
                         if item.quality > 0:
-                            if item.name != SULFURAS:
-                                self._QualityChanger(item, -1)
+                            self._QualityChanger(item, -1)
                     else:
                         item.quality = 0
                 else:
