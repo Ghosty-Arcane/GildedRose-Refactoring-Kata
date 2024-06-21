@@ -13,9 +13,10 @@ class GildedRose(object):
 
     def update_quality(self):
         for item in self.items:
+            if item.name == SULFURAS:
+                continue
             # Handles sell-in drop
-            if item.name != SULFURAS:
-                item.sell_in = item.sell_in - 1
+            item.sell_in = item.sell_in - 1
 
             # Handles quality drop
             qualityChange = -1
@@ -34,14 +35,10 @@ class GildedRose(object):
                 qualityChange = -qualityChange
             elif item.name == CONJURED:
                 qualityChange = qualityChange *2
-            elif item.name == SULFURAS:
-                return
             self._QualityChanger(item, qualityChange)
             
 
     def _QualityChanger(self, item: Item, change: int) ->None:
-        if item.name == SULFURAS:
-            return
         item.quality = max(0, min(50, item.quality + change))
         return
 
