@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import annotations
 
 BRIE = 'Aged Brie'
 BACKSTAGE = 'Backstage passes to a TAFKAL80ETC concert'
@@ -12,6 +13,7 @@ class GildedRose(object):
 
     def update_quality(self):
         for item in self.items:
+            # Handles quality drop
             if item.name != BRIE and item.name != BACKSTAGE:
                 if item.quality > 0:
                     if item.name != SULFURAS:
@@ -26,8 +28,12 @@ class GildedRose(object):
                         if item.sell_in < 6:
                             if item.quality < 50:
                                 item.quality = item.quality + 1
+
+            # Handles sell-in drop
             if item.name != SULFURAS:
                 item.sell_in = item.sell_in - 1
+
+            # Handles expiry quality drop
             if item.sell_in < 0:
                 if item.name != BRIE:
                     if item.name != BACKSTAGE:
@@ -40,6 +46,9 @@ class GildedRose(object):
                     if item.quality < 50:
                         item.quality = item.quality + 1
 
+    def _QualityChanger(self, item: Item, change: int) ->None:
+        item.quality = item.quality + change
+        return
 
 class Item:
     def __init__(self, name, sell_in, quality):
