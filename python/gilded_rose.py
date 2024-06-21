@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
 
+BRIE = 'Aged Brie'
+BACKSTAGE = 'Backstage passes to a TAFKAL80ETC concert'
+SULFURAS = 'Sulfuras, Hand of Ragnaros'
+CONJURED = 'Conjured Mana Cake'
+
 class GildedRose(object):
 
     def __init__(self, items):
