@@ -17,17 +17,17 @@ class GildedRose(object):
             if item.name != BRIE and item.name != BACKSTAGE:
                 if item.quality > 0:
                     if item.name != SULFURAS:
-                        item.quality = item.quality - 1
+                        self._QualityChanger(item, -1)
             else:
                 if item.quality < 50:
-                    item.quality = item.quality + 1
+                    self._QualityChanger(item, 1)
                     if item.name == BACKSTAGE:
                         if item.sell_in < 11:
                             if item.quality < 50:
-                                item.quality = item.quality + 1
+                                self._QualityChanger(item, 1)
                         if item.sell_in < 6:
                             if item.quality < 50:
-                                item.quality = item.quality + 1
+                                self._QualityChanger(item, 1)
 
             # Handles sell-in drop
             if item.name != SULFURAS:
@@ -39,12 +39,12 @@ class GildedRose(object):
                     if item.name != BACKSTAGE:
                         if item.quality > 0:
                             if item.name != SULFURAS:
-                                item.quality = item.quality - 1
+                                self._QualityChanger(item, -1)
                     else:
-                        item.quality = item.quality - item.quality
+                        item.quality = 0
                 else:
                     if item.quality < 50:
-                        item.quality = item.quality + 1
+                        self._QualityChanger(item, 1)
 
     def _QualityChanger(self, item: Item, change: int) ->None:
         item.quality = item.quality + change
