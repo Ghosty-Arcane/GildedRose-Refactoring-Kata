@@ -47,6 +47,8 @@ class GildedRose(object):
                         self._QualityChanger(item, 1)
 
     def _QualityChanger(self, item: Item, change: int) ->None:
+        if item.name == SULFURAS:
+            return
         item.quality = item.quality + change
         return
 
